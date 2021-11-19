@@ -1,0 +1,27 @@
+from flask import Flask, request, jsonify
+from model import Models
+
+app = Flask(__name__)
+
+# loading model
+api = Models()
+
+
+@app.route('/entity', methods=['POST', 'GET'])
+def check():
+
+    text = request.form.get("text")
+
+    try:
+        value = api.entity(text)
+    except Exception as e:
+        print("error occured", e)
+        value = {}
+
+    result_dict = {"entity": value}
+
+    return jsonify(result_dict)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
