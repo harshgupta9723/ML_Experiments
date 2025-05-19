@@ -7,6 +7,7 @@ import json
 import time
 
 
+
 def read_data():
     data = pd.read_csv("scoring_data.csv")
 
